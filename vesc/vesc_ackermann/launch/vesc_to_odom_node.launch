@@ -1,0 +1,18 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+  <!-- Optionally launch in GDB, for debugging -->
+  <arg name="racecar_version" default="racecar-v2" />
+  <arg name="vesc_config" default="$(find racecar)/config/$(arg racecar_version)/vesc.yaml" />
+  <rosparam file="$(arg vesc_config)" command="load" />
+  <arg name="debug" default="false" />
+  <arg if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+
+  <!-- VESC to Odom node -->
+  <node pkg="vesc_ackermann" type="vesc_to_odom_node" name="vesc_to_odom_node"
+        output="screen" launch-prefix="$(arg launch_prefix)" >
+      
+  </node>
+
+</launch>
