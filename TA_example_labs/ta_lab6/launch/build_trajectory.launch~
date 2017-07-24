@@ -1,0 +1,16 @@
+<launch>
+	<!-- Open Map-->
+	
+	    <arg name="map" default="$(find particle_filter)/maps/half_B1_corridor.yaml"/>
+    	<node pkg="map_server" name="map_server" type="map_server" args="$(arg map)" />
+
+
+	<!-- Build Trajectory-->
+	<node pkg="ta_lab6" type="trajectory_builder.py" name="Trajectory_builder">
+		<param name="save_path" value="$(find ta_lab6)/trajectories/"/>
+	</node>
+	
+	
+	<node name="rviz" pkg="rviz" type="rviz" args="-d /home/ubuntu/racecar-ws/src/TA_example_labs/ta_lab6/rviz/search.rviz"/>
+
+</launch>

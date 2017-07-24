@@ -1,0 +1,5 @@
+<launch>
+
+<node pkg="rviz" name="rviz" type="rviz" args="-d $(find ta_lab6)/rviz/pursuit.rviz" />
+
+</launch>
